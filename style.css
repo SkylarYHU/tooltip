@@ -1,0 +1,58 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fefce8;
+}
+
+#container{
+  position: relative;
+  font-weight: 600;
+  font-size: 30px;
+  color: #000;
+  padding: 7px;
+  cursor: pointer;
+}
+
+#tooltip-content{
+  font-size: 15px;
+  position: absolute;
+  left: 50%;
+  top:0;
+  /* 当我们使用 left: 50% 将元素移动到父容器宽度的一半时，这会让元素的左边缘对齐到父容器的中心点，而并不是整个元素居中 */
+  transform: translateX(-50%);
+  background: #000;
+  color: #fff;
+  white-space: nowrap;
+  padding: 8px 12px;
+  border-radius: 7px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* 使用 ::before 伪元素在提示框底部创建一个三角形箭头 */
+#tooltip-content::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  border: 10px solid;
+  /* 设置元素四个边框颜色: 上黑， 右下左透明 */
+  border-color: #000 #0000 #0000 #0000;
+}
+
+#container:hover #tooltip-content{
+  top: -70%;
+  visibility: visible;
+  opacity: 1;
+}
